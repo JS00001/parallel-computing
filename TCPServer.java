@@ -3,12 +3,11 @@ import java.net.*;
 
 public class TCPServer {
     public static void main(String[] args) throws IOException {
-
         // Variables for setting up connection and communication
         Socket Socket = null; // socket to connect with ServerRouter
         PrintWriter out = null; // for writing to ServerRouter
         BufferedReader in = null; // for reading form ServerRouter
-        int serverPort = 1234; // port number for this server
+        int serverPort = Integer.parseInt(args[1].split(":")[1]); // port number
 
         String routerHost = "127.0.0.1"; // ServerRouter host name
         int routerPort = 5555; // ServerRouter port
@@ -32,7 +31,7 @@ public class TCPServer {
         // Variables for message passing
         String fromServer; // messages sent to ServerRouter
         String fromClient; // messages received from ServerRouter
-        String clientAddress = "127.0.0.1:5678"; // destination IP (Client)
+        String clientAddress = args[0]; // destination IP (Client)
 
         // Communication process (initial sends/receives)
         out.println(clientAddress); // initial send (IP of the Client)

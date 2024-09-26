@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 
 public class TCPClient {
     public static void main(String[] args) throws IOException {
@@ -9,7 +10,7 @@ public class TCPClient {
         BufferedReader in = null; // for reading form ServerRouter
         InetAddress addr = InetAddress.getLocalHost();
         String host = addr.getHostAddress(); // Client machine's IP
-        int clientPort = 5678; // port number
+        int clientPort = Integer.parseInt(args[1].split(":")[1]); // port number
 
         String routerHost = "127.0.0.1"; // ServerRouter host name
         int routerPort = 5555; // ServerRouter port
@@ -35,7 +36,7 @@ public class TCPClient {
         BufferedReader fromFile = new BufferedReader(reader); // reader for the string file
         String fromServer; // messages received from ServerRouter
         String fromUser; // messages sent to ServerRouter
-        String serverHost = "127.0.0.1:1234"; // destination IP (Server)
+        String serverHost = args[0]; // destination IP (Server)
         long t0, t1, t;
 
         // Communication process (initial sends/receives)
