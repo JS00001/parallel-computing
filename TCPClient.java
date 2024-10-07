@@ -50,8 +50,13 @@ public class TCPClient {
         while ((fromServer = in.readLine()) != null) {
             System.out.println("Server: " + fromServer);
             t1 = System.currentTimeMillis();
-            if (fromServer.equals("Bye.")) // exit statement
+
+            // exit statement
+            if (fromServer.equals("BYE.")) {
+                System.out.println("Client: terminating...");
                 break;
+            }
+
             t = t1 - t0;
             System.out.println("Cycle time: " + t);
 
